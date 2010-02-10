@@ -10,7 +10,9 @@ INSTALL
 
 2) add 'whereabouts' to your INSTALLED_APPS
 
-3) if desired change the list of relatable content types by adding the
+3) Run syncdb
+
+4) if desired change the list of relatable content types by adding the
    setting WHEREABOUTS_CONTENT_TYPES to settings.py. It must be set to
    a list of existing content types. default: ['site', 'user', 'group']
 
