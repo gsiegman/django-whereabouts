@@ -1,0 +1,27 @@
+ABOUT
+
+django-whereabouts is yet another take on the "elsewhere" concept.
+The difference from the others is it provides the ability to relate
+an "elsewhere" profile to any django model instance (e.g. site, user).
+
+INSTALL
+
+1) add the whereabouts folder somewhere in your python path
+
+2) add 'whereabouts' to your INSTALLED_APPS
+
+3) if desired change the list of relatable content types by adding the
+   setting WHEREABOUTS_CONTENT_TYPES to settings.py. It must be set to
+   a list of existing content types. default: ['site', 'user', 'group']
+
+USAGE
+
+1) add {% load whereabouts_tags %} to the desired template
+
+2) to get the whereabouts for a model instance:
+   {% get_whereabouts [object] as [var_name] %}
+
+   for example to get the whereabouts of the logged in user:
+
+   {% get_whereabouts request.user as whereabouts %}
+
