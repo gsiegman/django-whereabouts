@@ -3,6 +3,7 @@ from django.conf import settings
 from django.contrib.sites.models import Site
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
+from django.template import Template, Context
 
 class SocialNetwork(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -17,8 +18,8 @@ class SocialNetwork(models.Model):
         max_length=255, 
         blank=True,
         help_text= """
-            Enter URL template with {profileid} as a placeholder for the user's
-            unique id on the network. Leave blank for default of http://domain/{profileid}            
+            Enter URL template with {{ profile_id }} as a placeholder for the user's
+            unique id on the network. Leave blank for default of http://site_url/{{ profileid }}            
         """
     )
     
@@ -30,7 +31,7 @@ class SocialNetwork(models.Model):
         
     def save(self, *args, **kwargs):
         if not self.profile_template:
-            self.profile_template = '%s{profileid}' % self.site_url
+            self.profile_template = '%s{{ profile_id }}' % self.site_url
         super(SocialNetwork, self).save(*args, **kwargs)
         
     def get_absolute_url(self):
@@ -56,4 +57,6 @@ class SocialNetworkProfile(models.Model):
                                             self.network.name)
         
     def get_absolute_url(self):
-        return self.network.profile_template.replace('{profileid}', self.profile_id)
+        t = Template(self.network.profile_template)
+        c = Context({'profile_id': self.profile_id})
+        return t.render(c)
