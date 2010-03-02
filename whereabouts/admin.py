@@ -16,7 +16,10 @@ class SocialNetworkProfileAdmin(admin.ModelAdmin):
         form = super(SocialNetworkProfileAdmin, self).get_form(request, obj)
         form.base_fields["content_type"].queryset = ContentType.objects.filter(name__in=WHEREABOUTS_CONTENT_TYPES)
         return form
+        
+class SocialNetworkWidgetAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('name',)}
 
 admin.site.register(SocialNetwork, SocialNetworkAdmin)
 admin.site.register(SocialNetworkProfile, SocialNetworkProfileAdmin)
-admin.site.register(SocialNetworkWidget)
+admin.site.register(SocialNetworkWidget, SocialNetworkWidgetAdmin)
