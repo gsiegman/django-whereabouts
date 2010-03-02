@@ -53,6 +53,14 @@ ADMIN_MEDIA_PREFIX = '/media/'
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'eg&#u^%axtc$7)gk=*vy8$+!sfjv00%sk(7vxv$o#eg+ktb64r'
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.core.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "example_project.context_processors.current_site",
+)
+
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
@@ -72,7 +80,10 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    PROJECT_ROOT + '/templates/'
 )
+
+FACEBOOK_API_KEY = '12e10fd405672c7cfc1c5d54d5efa0ac'
 
 INSTALLED_APPS = (
     'django.contrib.auth',

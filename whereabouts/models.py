@@ -58,5 +58,16 @@ class SocialNetworkProfile(models.Model):
         
     def get_absolute_url(self):
         t = Template(self.network.profile_template)
-        c = Context({'profile_id': self.profile_id})
+        c = Context({"profile_id": self.profile_id})
         return t.render(c)
+        
+class SocialNetworkWidget(models.Model):
+    network = models.ForeignKey(SocialNetwork)
+    name = models.CharField(max_length=50)
+    slug = models.SlugField()
+    description = models.TextField()
+    widget_template = models.TextField()
+    api_key_setting = models.CharField(max_length=50, blank=True, null=True)
+    
+    def __unicode__(self):
+        return '%s widget' % self.name

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.contenttypes.models import ContentType
 from django.conf import settings
-from whereabouts.models import SocialNetwork, SocialNetworkProfile
+from whereabouts.models import SocialNetwork, SocialNetworkProfile, SocialNetworkWidget
 
 WHEREABOUTS_CONTENT_TYPES = getattr(settings, 'WHEREABOUTS_CONTENT_TYPES', ['user', 'site', 'group'])
 
@@ -19,3 +19,4 @@ class SocialNetworkProfileAdmin(admin.ModelAdmin):
 
 admin.site.register(SocialNetwork, SocialNetworkAdmin)
 admin.site.register(SocialNetworkProfile, SocialNetworkProfileAdmin)
+admin.site.register(SocialNetworkWidget)
