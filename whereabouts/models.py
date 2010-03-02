@@ -19,7 +19,7 @@ class SocialNetwork(models.Model):
         blank=True,
         help_text= """
             Enter URL template with {{ profile_id }} as a placeholder for the user's
-            unique id on the network. Leave blank for default of http://site_url/{{ profileid }}            
+            unique id on the network. Leave blank for default of http://site_url/{{ profile_id }}            
         """
     )
     
