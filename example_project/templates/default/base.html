@@ -1,0 +1,13 @@
+{% load whereabouts_tags whereabouts_widgets %}
+
+{% get_whereabouts current_site as whereabouts %}
+{% for profile in whereabouts %}
+<li>
+	<a href="{{ profile.get_absolute_url }}">
+		<img src="{{ MEDIA_URL }}/{{ profile.network.icon }}" alt="{{ profile.network }}" />
+	</a>
+</li>
+{% endfor %}
+
+{% whereabouts_widget current_site facebook-fanbox %}
+{% whereabouts_widget current_site twitter-profile-widget %}
