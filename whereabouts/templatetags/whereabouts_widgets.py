@@ -12,21 +12,24 @@ class WidgetNode(template.Node):
         self.widget_slug = widget_slug
         
     def render(self, context):
-        object_instance = self.content_object.resolve(context)
-        content_type = ContentType.objects.get_for_model(object_instance)
+        try:
+            object_instance = self.content_object.resolve(context)
+            content_type = ContentType.objects.get_for_model(object_instance)
         
-        widget = SocialNetworkWidget.objects.get(slug=self.widget_slug)
-        profile = SocialNetworkProfile.objects.get(content_type=content_type, object_id=object_instance.id, network=widget.network)
+            widget = SocialNetworkWidget.objects.get(slug=self.widget_slug)
+            profile = SocialNetworkProfile.objects.get(content_type=content_type, object_id=object_instance.id, network=widget.network)
         
-        context_dict = {}
-        context_dict['profile'] = profile
-        if widget.api_key_setting:
-            context_dict['api_key'] = getattr(settings, widget.api_key_setting)
+            context_dict = {}
+            context_dict['profile'] = profile
+            if widget.api_key_setting:
+                context_dict['api_key'] = getattr(settings, widget.api_key_setting)
         
-        t = template.Template(widget.widget_template)
-        c = template.Context(context_dict)
+            t = template.Template(widget.widget_template)
+            c = template.Context(context_dict)
         
-        return t.render(c)
+            return t.render(c)
+        except:
+            return ''
 
 @register.tag
 def whereabouts_widget(parser, token):
