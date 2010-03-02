@@ -19,7 +19,7 @@ class WidgetNode(template.Node):
         profile = SocialNetworkProfile.objects.get(content_type=content_type, object_id=object_instance.id, network=widget.network)
         
         context_dict = {}
-        context_dict['obj'] = profile
+        context_dict['profile'] = profile
         if widget.api_key_setting:
             context_dict['api_key'] = getattr(settings, widget.api_key_setting)
         
