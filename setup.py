@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name='django-whereabouts',
-        version='0.2',
+        version='0.3',
         description='A more flexible django "elsewhere" app.',
         author='Glenn Siegman',
         author_email='gsiegman@gsiegman.com',
