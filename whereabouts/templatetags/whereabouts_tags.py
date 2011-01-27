@@ -1,9 +1,13 @@
 from django import template
+
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
+
 from whereabouts.models import SocialNetworkProfile
 
+
 register = template.Library()
+
 
 class Whereabouts(template.Node):
     def __init__(self, content_object, var_name):
@@ -13,9 +17,13 @@ class Whereabouts(template.Node):
     def render(self, context):
         object_instance = self.content_object.resolve(context)
         content_type = ContentType.objects.get_for_model(object_instance)
-        whereabouts = SocialNetworkProfile.objects.filter(content_type=content_type, object_id=object_instance.id)
+        whereabouts = SocialNetworkProfile.objects.filter(
+            content_type=content_type,
+            object_id=object_instance.id
+        )
         context[self.var_name] = whereabouts
-        return ''
+        return ""
+
 
 @register.tag
 def get_whereabouts(parser, token):
