@@ -13,7 +13,7 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASE_ENGINE = 'sqlite3'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'whereabouts'             # Or path to database file if using sqlite3.
+DATABASE_NAME = 'whereabouts.db'             # Or path to database file if using sqlite3.
 DATABASE_USER = ''             # Not used with sqlite3.
 DATABASE_PASSWORD = ''         # Not used with sqlite3.
 DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
@@ -82,8 +82,6 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     PROJECT_ROOT + '/templates/'
 )
-
-FACEBOOK_API_KEY = '12e10fd405672c7cfc1c5d54d5efa0ac'
 
 INSTALLED_APPS = (
     'django.contrib.auth',
