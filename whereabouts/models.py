@@ -53,7 +53,7 @@ class SocialNetworkProfile(models.Model):
     profile_id = models.CharField(max_length=100)
     
     class Meta:
-        ordering = ("pk",)
+        ordering = ("id",)
     
     def __unicode__(self):
         return "%s's (%s) profile on %s" % (self.content_object,
